@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#171522">
+<title>Nocna zmiana — miasto po godzinach</title>
+<style>
+:root{--bg:#171522;--panel:#211e2c;--line:#393342;--text:#f3e8d5;--muted:#aaa0ae;--accent:#ffa76b;--mint:#a5ccbc}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 'Courier New',monospace}button,a,input{-webkit-tap-highlight-color:transparent}button,a{touch-action:manipulation}button{font:inherit;cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:5px}button{color:var(--text)}.wrap{width:min(1376px,92%);margin:auto}header{height:94px;display:flex;align-items:center;justify-content:space-between;gap:28px}.brand{display:flex;align-items:center;gap:15px;font-size:17px;font-weight:bold;letter-spacing:-.7px}.brand-icon{width:30px;height:30px;display:grid;grid-template-columns:repeat(3,6px);gap:3px;align-content:end;transform:rotate(-5deg)}.brand-icon i{background:var(--accent);height:24px;box-shadow:0 0 16px #ffa76b22}.brand-icon i:nth-child(2){height:33px}.brand-icon i:nth-child(3){height:18px}nav{display:flex;gap:34px;font-size:14px;color:var(--muted)}nav a{padding:10px 0;position:relative}nav a:hover,nav a.active{color:var(--text)}nav a.active:after{content:'';position:absolute;bottom:0;left:0;width:18px;height:3px;background:var(--accent)}.demo{font-size:12px;letter-spacing:2px;color:var(--accent);border:1px solid #695044;padding:6px 12px}.hero{position:relative;min-height:600px;height:min(72vw,690px);overflow:hidden;border:1px solid #51404e;background:#423348}.hero canvas{width:100%;height:100%;position:absolute;inset:0;image-rendering:pixelated}.hero:after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,#0906100b 0px,#0906100b 1px,transparent 1px,transparent 4px);pointer-events:none}.hero-copy{position:absolute;z-index:1;left:5%;top:7%;max-width:540px;text-shadow:0 3px 0 #241d34}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:3px;color:#f7c29c;display:flex;gap:12px;align-items:center}.eyebrow:before{content:'';width:22px;height:2px;background:var(--accent)}h1{font:800 clamp(48px,5.6vw,84px)/.99 system-ui,sans-serif;letter-spacing:-5px;margin:22px 0}h1 span{color:#ffb283}.hero-copy p{max-width:360px;font-size:15px;line-height:1.8;color:#e9ccca}.primary{background:var(--accent);border:0;color:#2c2230;padding:14px 23px;box-shadow:4px 4px 0 #734c51;font-size:14px;font-weight:bold;display:inline-block;margin-top:13px}.primary:hover{background:#ffc298;transform:translateY(-2px)}.scene-meta{position:absolute;right:28px;top:25px;text-align:right;font-size:12px;z-index:1;color:#f5daca}.scene-meta strong{font-size:27px;display:block;color:#fff0d8;letter-spacing:2px}.scene-caption{position:absolute;left:25px;bottom:24px;z-index:1;background:#171522d9;padding:8px 14px;font-size:12px;border-left:3px solid var(--accent)}.scene-hint{position:absolute;right:25px;bottom:27px;z-index:1;font-size:12px;background:#171522d9;padding:6px 10px;color:#cdbecf}.console{display:flex;align-items:center;justify-content:space-between;gap:20px;background:var(--panel);border:1px solid var(--line);border-top:0;padding:20px 26px}.control-group{display:flex;gap:8px;align-items:center}.control-label{font-size:11px;letter-spacing:1.5px;color:var(--muted);margin-right:15px}.toggle{background:transparent;border:1px solid var(--line);padding:8px 13px;font-size:13px;min-height:40px}.toggle:hover{border-color:#8c7182}.toggle[aria-pressed=true]{background:#413133;border-color:#ad785b;color:#ffc398}.radio{display:flex;align-items:center;gap:15px}.radio-button{width:40px;height:40px;background:var(--mint);border:0;color:#1d2b2a;font-size:17px}.radio-text{font-size:12px;line-height:1.6}.radio-text span{display:block;color:var(--muted);font-size:11px}.equalizer{display:flex;gap:3px;height:22px;align-items:end}.equalizer i{width:3px;height:5px;background:var(--mint)}.playing .equalizer i{animation:eq .8s steps(4) infinite alternate}.equalizer i:nth-child(2){animation-delay:-.3s}.equalizer i:nth-child(3){animation-delay:-.6s}.equalizer i:nth-child(4){animation-delay:-.15s}@keyframes eq{to{height:22px}}.intro{display:flex;justify-content:space-between;align-items:end;margin:62px 0 26px;gap:20px}.section-label{font-size:11px;letter-spacing:2px;color:var(--accent)}h2{font:600 clamp(25px,3vw,38px)/1.2 system-ui,sans-serif;letter-spacing:-1px;margin:10px 0 0}.intro p{font-size:13px;color:var(--muted);margin:0}.districts{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.district{display:block;text-align:left;padding:0;background:var(--panel);border:1px solid var(--line);transition:transform .2s,border-color .2s;overflow:hidden}.district:hover{transform:translateY(-5px);border-color:var(--accent)}.district[aria-pressed=true]{border-color:#ad785b}.thumb{height:166px;position:relative;background:#403548;overflow:hidden}.thumb canvas{width:100%;height:100%;image-rendering:pixelated}.tag{position:absolute;left:14px;top:14px;background:#171522df;padding:3px 9px;font-size:10px;letter-spacing:1px;color:#f6d5bd}.card-body{padding:20px 22px}.card-top{display:flex;justify-content:space-between;gap:12px;align-items:center}.card-top h3{font:600 20px/1.3 system-ui,sans-serif;margin:0}.card-top span{color:var(--accent);font-size:12px}.card-body p{font-size:13px;color:var(--muted);line-height:1.8;margin:10px 0 2px}.footer{border-top:1px solid var(--line);margin-top:48px;padding:24px 0 30px;display:flex;justify-content:space-between;color:var(--muted);font-size:11px;gap:20px}.footer b{color:var(--accent);font-weight:normal}.toast{position:fixed;bottom:25px;left:50%;transform:translate(-50%,25px);opacity:0;transition:.25s;background:var(--text);color:var(--bg);padding:12px 20px;z-index:10;pointer-events:none;font-size:13px;max-width:90%;width:max-content}.toast.show{opacity:1;transform:translate(-50%,0)}dialog{background:var(--panel);color:var(--text);border:1px solid #9d735b;width:min(560px,90%);padding:36px;box-shadow:10px 10px 0 #0c0a13}dialog::backdrop{background:#100d1bd9}dialog h2{margin-bottom:20px}dialog p{font-size:14px;color:#c6b9c7}.close{float:right;background:transparent;border:1px solid var(--line);width:36px;height:36px}dialog ul{padding-left:20px;font-size:14px;color:#d5c7d0}dialog li{margin:12px 0}.volume{width:65px;accent-color:var(--mint)}@media(min-width:1600px){.hero{height:740px}}@media(max-width:1000px){.console{flex-wrap:wrap}.control-label{margin-right:5px}.hero-copy{max-width:440px}h1{letter-spacing:-3px}.radio{margin-left:auto}.districts{gap:14px}.card-body{padding:16px}.scene-hint{display:none}}@media(max-width:650px){header{height:82px;gap:12px;flex-wrap:wrap;align-content:center}.brand{font-size:14px;gap:9px}.brand-icon{transform:scale(.75);width:24px}nav{gap:16px;font-size:12px}.demo{display:none}.hero{height:650px;min-height:0}.hero-copy{top:5%;left:7%;right:7%}h1{font-size:57px;letter-spacing:-3px}.hero-copy p{font-size:14px;max-width:280px}.scene-meta{top:auto;bottom:72px;right:20px}.scene-meta strong{font-size:22px}.console{padding:16px;gap:15px}.control-group{flex-wrap:wrap;gap:6px}.control-label{min-width:48px;font-size:10px}.toggle{padding:7px 10px;font-size:12px}.radio{margin:0;flex:1}.intro{margin-top:38px;display:block}.intro p{margin-top:15px}.districts{grid-template-columns:1fr}.thumb{height:190px}.card-body{padding:20px}.footer{display:block;line-height:2}.footer span{display:block}.scene-caption{font-size:10px;left:15px}.eyebrow{font-size:10px;letter-spacing:2px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+@media(max-width:650px){.hero canvas{object-fit:cover;object-position:66% center}.hero-copy h1{font-size:clamp(34px,10.5vw,44px);letter-spacing:-2px;line-height:1.08}.hero-copy p{font-size:13px}.hero-copy .primary{font-size:12px}.hero-copy{left:6%;right:6%}.scene-meta{bottom:76px}.scene-caption{max-width:calc(100% - 30px)}}
+
+/* A local 5 x 7 typeface, embedded to keep this page self-contained. */
+@font-face{font-family:NocnaPixel;src:url(data:font/ttf;base64,AAEAAAAKAIAAAwAgT1MvMkXORjgAAAEoAAAAYGNtYXAKrgsbAAAB8AAAALpnbHlmk06X3QAAAxQAACKOaGVhZC9eAeYAAACsAAAANmhoZWEF3gH2AAAA5AAAACRobXR4AlgAAAAAAYgAAABobG9jYd8w5/AAAAKsAAAAaG1heHAASQBWAAABCAAAACBuYW1lK6uLqAAAJaQAAADzcG9zdOu7FFoAACaYAAABWQABAAAAAQAAgRlCEV8PPPUAAQPoAAAAAOcqXvMAAAAA5ype8wAA/zgB9APoAAAAAwACAAAAAAAAAAEAAAPo/zgAAAJYAAAAZAH0AAEAAAAAAAAAAAAAAAAAAAABAAEAAAAzAFQAFQAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAwJYAZAABQAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAAPz8/PwAAACABfAPo/zgAAAPoAMgAAAAAAAAAAAAAAAAAAAAgAAACWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAADAAAAFAADAAEAAAAUAAQApgAAABwAEAADAAwAIAAvADkAOgBaAHoA0wDzAQcBGQFEAVsBfP//AAAAIAAtADAAOgBBAGEA0wDzAQQBGAFBAVoBef//AAkAAP/r/+z/wP+g/1z/PAAAAAAAAAAAAAAAAQAAABoAAAAAAAAAAAAAAAAAEgAYABoAIAAiAAAAKAAlACcAKgAqACsAKwAsACwALQAtAC4ALgAwADAAMQAxADIAMgAAAAAAAABvAOgBNQGkAgwCXgLKAzQDiwPOBCUEZQTTBUgFrAYHBnAG3gc3B3cH1ggpCJcI6QknCX8J+Ao0CogK4Qs2C5kL+gw7DKQNBQ0hDVQNgQ2jDaMOHQ51DugPMw+zECIQhhDpEUcAEgAAAAAB9AK8AAMABwALAA8AEwAXABsAHwAjACcAKwAvADMANwA7AD8AQwBHAAATMzUjFzM1IxczNSMFMzUjBTM1IwUzNSMFMzUjBTM1IxczNSMXMzUjFzM1IxczNSMFMzUjBTM1IwUzNSMFMzUjBTM1IwUzNSNkZGRkZGRkZGT+1GRkAZBkZP5wZGQBkGRk/nBkZGRkZGRkZGRkZGRkZP5wZGQBkGRk/nBkZAGQZGT+cGRkAZBkZAJYZGRkZGTIZGRkyGRkZMhkZGRkZGRkZGTIZGRkyGRkZMhkZGQAFAAAAAAB9AK8AAMABwALAA8AEwAXABsAHwAjACcAKwAvADMANwA7AD8AQwBHAEsATwAAETM1IxczNSMXMzUjFzM1IwUzNSMFMzUjBTM1IwUzNSMFMzUjFzM1IxczNSMXMzUjBTM1IwUzNSMFMzUjBTM1IwUzNSMXMzUjFzM1IxczNSNkZGRkZGRkZGRkZP7UZGQBkGRk/nBkZAGQZGT+cGRkZGRkZGRkZGRk/tRkZAGQZGT+cGRkAZBkZP5wZGRkZGRkZGRkZGQCWGRkZGRkZGTIZGRkyGRkZMhkZGRkZGRkyGRkZMhkZGTIZGRkZGRkZAANAAAAAAH0ArwAAwAHAAsADwATABcAGwAfACMAJwArAC8AMwAAEzM1IxczNSMXMzUjFzM1IwUzNSMVMzUjFTM1IxUzNSMVMzUjFzM1IxczNSMXMzUjFzM1I2RkZGRkZGRkZGRkZP5wZGRkZGRkZGRkZGRkZGRkZGRkZGRkZAJYZGRkZGRkZMhkyGTIZMhkyGTIZGRkZGRkZAAAEgAAAAAB9AK8AAMABwALAA8AEwAXABsAHwAjACcAKwAvADMANwA7AD8AQwBHAAARMzUjFzM1IxczNSMXMzUjBTM1IwUzNSMFMzUjBTM1IwUzNSMFMzUjBTM1IwUzNSMFMzUjBTM1IwUzNSMXMzUjFzM1IxczNSNkZGRkZGRkZGRkZP7UZGQBkGRk/nBkZAGQZGT+cGRkAZBkZP5wZGQBkGRk/nBkZAGQZGT+cGRkZGRkZGRkZGRkAlhkZGRkZGRkyGRkZMhkZGTIZGRkyGRkZMhkZGTIZGRkZGRkZAAAEgAAAAAB9AK8AAMABwALAA8AEwAXABsAHwAjACcAKwAvADMANwA7AD8AQwBHAAARMzUjFzM1IxczNSMXMzUjFzM1IwUzNSMVMzUjFTM1IxczNSMXMzUjFzM1IwUzNSMVMzUjFTM1IxczNSMXMzUjFzM1IxczNSNkZGRkZGRkZGRkZGRkZP5wZGRkZGRkZGRkZGRkZGRk/tRkZGRkZGRkZGRkZGRkZGRkZGQCWGRkZGRkZGRkZMhkyGTIZGRkZGRkZMhkyGTIZGRkZGRkZGRkAA4AAAAAAfQCvAADAAcACwAPABMAFwAbAB8AIwAnACsALwAzADcAABEzNSMXMzUjFzM1IxczNSMXMzUjBTM1IxUzNSMVMzUjFzM1IxczNSMXMzUjBTM1IxUzNSMVMzUjZGRkZGRkZGRkZGRkZGT+cGRkZGRkZGRkZGRkZGRkZP7UZGRkZGRkAlhkZGRkZGRkZGTIZMhkyGRkZGRkZGTIZMhkyGQAEgAAAAAB9AK8AAMABwALAA8AEwAXABsAHwAjACcAKwAvADMANwA7AD8AQwBHAAATMzUjFzM1IxczNSMXMzUjBTM1IxUzNSMVMzUjFzM1IxczNSMXMzUjBTM1IwUzNSMFMzUjBTM1IwUzNSMXMzUjFzM1IxczNSNkZGRkZGRkZGRkZGT+cGRkZGRkZMhkZGRkZGRkZP5wZGQBkGRk/nBkZAGQZGT+1GRkZGRkZGRkZGRkAlhkZGRkZGRkyGTIZMhkZGRkZGRkyGRkZMhkZGTIZGRkZGRkZAAAEQAAAAAB9AK8AAMABwALAA8AEwAXABsAHwAjACcAKwAvADMANwA7AD8AQwAAETM1IwUzNSMFMzUjBTM1IwUzNSMFMzUjBTM1IxczNSMXMzUjFzM1IxczNSMFMzUjBTM1IwUzNSMFMzUjBTM1IwUzNSNkZAGQZGT+cGRkAZBkZP5wZGQBkGRk/nBkZGRkZGRkZGRkZGRkZP5wZGQBkGRk/nBkZAGQZGT+cGRkAZBkZAJYZGRkyGRkZMhkZGTIZGRkZGRkZGRkyGRkZMhkZGTIZGRkAAAPAAAAAAH0ArwAAwAHAAsADwATABcAGwAfACMAJwArAC8AMwA3ADsAABEzNSMXMzUjFzM1IxczNSMXMzUjBzM1IxUzNSMVMzUjFTM1IxUzNSMHMzUjFzM1IxczNSMXMzUjFzM1I2RkZGRkZGRkZGRkZGRkyGRkZGRkZGRkZGTIZGRkZGRkZGRkZGRkZGQCWGRkZGRkZGRkZMhkyGTIZMhkyGTIZGRkZGRkZGRkAAALAAAAAAH0ArwAAwAHAAsADwATABcAGwAfACMAJwArAAATMzUjFzM1IxczNSMHMzUjFTM1IxUzNSMVMzUjBTM1IwUzNSMHMzUjFzM1I8hkZGRkZGRkZGRkZGRkZGRkZP7U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NSMXMzUjBzM1IxUzNSMVMzUjFTM1I2RkAZBkZP5wZGQBkGRk/tRkZMhkZGRkZGRkZGRkZAJYZGRkyGRkZMhkZGTIZMhkyGTIZAAADwAAAAAB9AK8AAMABwALAA8AEwAXABsAHwAjACcAKwAvADMANwA7AAARMzUjFzM1IxczNSMXMzUjFzM1IxUzNSMHMzUjBzM1IwczNSMHMzUjFTM1IxczNSMXMzUjFzM1IxczNSNkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGQCWGRkZGRkZGRkZMhkyGTIZMhkyGTIZGRkZGRkZGRkAAAUAAAAAAH0ArwAAwAHAAsADwATABcAGwAfACMAJwArAC8AMwA3ADsAPwBDAEcASwBPAAATMzUjFzM1IxczNSMFMzUjBTM1IxczNSMFMzUjFzM1IxczNSMFMzUjFzM1IxczNSMFMzUjFzM1IwUzNSMFMzUjBTM1IwUzNSMXMzUjFzM1I2RkZGRkZGRkZP7UZGQBLGRkZGRk/nBkZMhkZMhkZP5wZGTIZGTIZGT+cGRkZGRkASxkZP5wZGQBkGRk/tRkZGRkZGRkZAJYZGRkZGTIZGRkZGTIZGRkZGTIZGRkZGTIZGRkZGTIZGRkyGRkZGRkAAoAZAAAAZACvAADAAcACwAPABMAFwAbAB8AIwAnAAATMzUjBzM1IxczNSMVMzUjFTM1IxUzNSMVMzUjBzM1IxczNSMXMzUjyGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGQCWGTIZGRkyGTIZMhkyGTIZGRkZGQAAA4AAAAAAfQCvAADAAcACwAPABMAFwAbAB8AIwAnACsALwAzADcAABMzNSMXMzUjFzM1IwUzNSMFMzUjFTM1IwczNSMHMzUjBzM1IwczNSMXMzUjFzM1IxczNSMXMzUjZGRkZGRkZGRk/tRkZAGQZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZAJYZGRkZGTIZGRkyGTIZMhkyGTIZGRkZGRkZGRkAA8AAAAAAfQCvAADAAcACwAPABMAFwAbAB8AIwAnACsALwAzADcAOwAAETM1IxczNSMXMzUjFzM1IxczNSMVMzUjBTM1IxczNSMXMzUjFzM1IxUzNSMFMzUjFzM1IxczNSMXMzUjZGRkZGRkZGRkZGRkZGRkZP7UZGRkZGRkZGRkZGRkZP5wZGRkZGRkZGRkZGQCWGRkZGRkZGTIZMhkyGRkZGRkyGTIZMhkZGRkZGRkAAAOAAAAAAH0ArwAAwAHAAsADwATABcAGwAfACMAJwArAC8AMwA3AAABMzUjBzM1IxczNSMHMzUjFzM1IwUzNSMFMzUjBTM1IxczNSMXMzUjFzM1IxczNSMHMzUjFTM1IwEsZGRkZGRkZGTIZGTIZGT+1GRkASxkZP7UZGRkZGRkZGRkZGRkZGRkZGRkZAJYZMhkZGTIZGRkyGRkZMhkZGRkZGRkZGTIZMhkABEAAAAAAfQCvAADAAcACwAPABMAFwAbAB8AIwAnACsALwAzADcAOwA/AEMAABEzNSMXMzUjFzM1IxczNSMXMzUjBTM1IxUzNSMVMzUjFzM1IxczNSMXMzUjFzM1IxUzNSMFMzUjFzM1IxczNSMXMzUjZGRkZGRkZGRkZGRkZGT+cGRkZGRkZGRkZGRkZGRkZGRkZGRk/nBkZGRkZGRkZGRkZAJYZGRkZGRkZGRkyGTIZMhkZGRkZGRkyGTIZMhkZGRkZGRkABAAAAAAAfQCvAADAAcACwAPABMAFwAbAB8AIwAnACsALwAzADcAOwA/AAATMzUjFzM1IxczNSMFMzUjFTM1IxUzNSMXMzUjFzM1IxczNSMFMzUjBTM1IwUzNSMFMzUjBTM1IxczNSMXMzUjZGRkZGRkZGRk/tRkZGRkZGRkZGRkZGRkZGT+1GRkAZBkZP5wZGQBkGRk/tRkZGRkZGRkZAJYZGRkZGTIZMhkyGRkZGRkZGTIZGRkyGRkZMhkZGRkZAAACwAAAAAB9AK8AAMABwALAA8AEwAXABsAHwAjACcAKwAAETM1IxczNSMXMzUjFzM1IxczNSMVMzUjBzM1IwczNSMHMzUjFTM1IxUzNSNkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZAJYZGRkZGRkZGRkyGTIZMhkyGTIZMhkABEAAAAAAfQCvAADAAcACwAPABMAFwAbAB8AIwAnACsALwAzADcAOwA/AEMAABMzNSMXMzUjFzM1IwUzNSMFMzUjBTM1IwUzNSMFMzUjFzM1IxczNSMFMzUjBTM1IwUzNSMFMzUjBTM1IxczNSMXMzUjZGRkZGRkZGRk/tRkZAGQZGT+cGRkAZBkZP7UZGRkZGRkZGT+1GRkAZBkZP5wZGQBkGRk/tRkZGRkZGRkZAJYZGRkZGTIZGRkyGRkZMhkZGRkZMhkZGTIZGRkyGRkZGRkABAAAAAAAfQCvAADAAcACwAPABMAFwAbAB8AIwAnACsALwAzADcAOwA/AAATMzUjFzM1IxczNSMFMzUjBTM1IwUzNSMFMzUjBTM1IxczNSMXMzUjFzM1IxUzNSMVMzUjBTM1IxczNSMXMzUjZGRkZGRkZGRk/tRkZAGQZGT+cGRkAZBkZP7UZGRkZGRkZGRkZGRkZGRk/tRkZGRkZGRkZAJYZGRkZGTIZGRkyGRkZMhkZGRkZGRkyGTIZMhkZGRkZAAABADIAAABkADIAAMABwALAA8AADczNSMXMzUjBzM1IxczNSPIZGRkZGRkZGRkZGRkZGRkyGRkZAAIAMgAZAGQAlgAAwAHAAsADwATABcAGwAfAAATMzUjFzM1IwczNSMXMzUjAzM1IxczNSMHMzUjFzM1I8hkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZAH0ZGRkyGRkZP7UZGRkyGRkZAAHAAAAAAH0ArwAAwAHAAsADwATABcAGwAAATM1IxUzNSMHMzUjBzM1IwczNSMHMzUjFTM1IwGQZGRkZGRkZGRkZGRkZGRkZGRkAlhkyGTIZMhkyGTIZMhkAAAFAAABLAH0AZAAAwAHAAsADwATAAARMzUjFzM1IxczNSMXMzUjFzM1I2RkZGRkZGRkZGRkZGRkASxkZGRkZGRkZGQAABQAAP84AfQCvAADAAcACwAPABMAFwAbAB8AIwAnACsALwAzADcAOwA/AEMARwBLAE8AABMzNSMXMzUjFzM1IwUzNSMFMzUjBTM1IwUzNSMFMzUjFzM1IxczNSMXMzUjFzM1IwUzNSMFMzUjBTM1IwUzNSMFMzUjBTM1IwczNSMXMzUjZGRkZGRkZGRk/tRkZAGQZGT+cGRkAZBkZP5wZGRkZGRkZGRkZGRkZGT+cGRkAZBkZP5wZGQBkGRk/nBkZAGQZGRkZGRkZGQCWGRkZGRkyGRkZMhkZGTIZGRkZGRkZGRkyGRkZMhkZGTIZGRkyGTIZAAPAAAAAAH0A+gAAwAHAAsADwATABcAGwAfACMAJwArAC8AMwA3ADsAABMzNSMXMzUjFzM1IxczNSMFMzUjFTM1IxUzNSMVMzUjFTM1IxczNSMXMzUjFzM1IxczNSMDMzUjMzM1I2RkZGRkZGRkZGRkZP5wZGRkZGRkZGRkZGRkZGRkZGRkZGRkZMhkZGRkZAJYZGRkZGRkZMhkyGTIZMhkyGTIZGRkZGRkZAK8ZGQAABQAAP84AfQCvAADAAcACwAPABMAFwAbAB8AIwAnACsALwAzADcAOwA/AEMARwBLAE8AABEzNSMXMzUjFzM1IxczNSMXMzUjBTM1IxUzNSMVMzUjFzM1IxczNSMXMzUjBTM1IxUzNSMVMzUjFzM1IxczNSMXMzUjFzM1IwczNSMXMzUjZGRkZGRkZGRkZGRkZGT+cGRkZGRkZGRkZGRkZGRkZP7UZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkAlhkZGRkZGRkZGTIZMhkyGRkZGRkZGTIZMhkyGRkZGRkZGRkZMhkyGQADQAAAAAB9AK8AAMABwALAA8AEwAXABsAHwAjACcAKwAvADMAABEzNSMVMzUjFTM1IxUzNSMVMzUjFTM1IxUzNSMXMzUjFzM1IxczNSMXMzUjJTM1IzMzNSNkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZP7UZGRkZGQCWGTIZMhkyGTIZMhkyGRkZGRkZGRkZMhkZAAAFQAAAAAB9APoAAMABwALAA8AEwAXABsAHwAjACcAKwAvADMANwA7AD8AQwBHAEsATwBTAAARMzUjBTM1IwUzNSMXMzUjBTM1IwUzNSMXMzUjBTM1IwUzNSMXMzUjFzM1IwUzNSMFMzUjFzM1IwUzNSMFMzUjFzM1IwUzNSMFMzUjAzM1IzMzNSNkZAGQZGT+cGRkZGRkASxkZP5wZGRkZGQBLGRk/nBkZMhkZMhkZP5wZGQBLGRkZGRk/nBkZAEsZGRkZGT+cGRkAZBkZMhkZGRkZAJYZGRkyGRkZGRkyGRkZGRkyGRkZGRkyGRkZGRkyGRkZGRkyGRkZAK8ZGQAABIAAAAAAfQD6AADAAcACwAPABMAFwAbAB8AIwAnACsALwAzADcAOwA/AEMARwAAEzM1IxczNSMXMzUjBTM1IwUzNSMFMzUjBTM1IwUzNSMFMzUjBTM1IwUzNSMFMzUjBTM1IwUzNSMXMzUjFzM1IwMzNSMzMzUjZGRkZGRkZGRk/tRkZAGQZGT+cGRkAZBkZP5wZGQBkGRk/nBkZAGQZGT+cGRkAZBkZP7UZGRkZGRkZGRkZGRkZGQCWGRkZGRkyGRkZMhkZGTIZGRkyGRkZMhkZGTIZGRkZGQCvGRkABEAAAAAAfQD6AADAAcACwAPABMAFwAbAB8AIwAnACsALwAzADcAOwA/AEMAABMzNSMXMzUjFzM1IxczNSMFMzUjFTM1IxczNSMXMzUjFzM1IxczNSMVMzUjBTM1IxczNSMXMzUjFzM1IwMzNSMzMzUjZGRkZGRkZGRkZGRk/nBkZGRkZGRkZGRkZGRkZGRkZGT+cGRkZGRkZGRkZGRkZGRkZGRkAlhkZGRkZGRkyGTIZMhkZGRkZMhkyGTIZGRkZGRkZAK8ZGQAEQAAAAAB9APoAAMABwALAA8AEwAXABsAHwAjACcAKwAvADMANwA7AD8AQwAAETM1IxczNSMXMzUjFzM1IxczNSMVMzUjBzM1IwczNSMHMzUjBzM1IxUzNSMXMzUjFzM1IxczNSMXMzUjAzM1IzMzNSNkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGTIZGRkZGQCWGRkZGRkZGRkZMhkyGTIZMhkyGTIZGRkZGRkZGRkArxkZAAAEAAAAAAB9AOEAAMABwALAA8AEwAXABsAHwAjACcAKwAvADMANwA7AD8AABEzNSMXMzUjFzM1IxczNSMXMzUjFTM1IwczNSMHMzUjBzM1IwczNSMVMzUjFzM1IxczNSMXMzUjFzM1IwMzNSNkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGTIZGQCWGRkZGRkZGRkZMhkyGTIZMhkyGTIZGRkZGRkZGRkArxkAAAAAAAACgB+AAEAAAAAAAEACwAAAAEAAAAAAAIABwALAAEAAAAAAAMACwASAAEAAAAAAAQACwAAAAEAAAAAAAYACgAdAAMAAQQJAAEAFgAnAAMAAQQJAAIADgA9AAMAAQQJAAMAFgBLAAMAAQQJAAQAFgAnAAMAAQQJAAYAFABhTm9jbmEgUGl4ZWxSZWd1bGFyTm9jbmFQaXhlbDFOb2NuYVBpeGVsAE4AbwBjAG4AYQAgAFAAaQB4AGUAbABSAGUAZwB1AGwAYQByAE4AbwBjAG4AYQBQAGkAeABlAGwAMQBOAG8AYwBuAGEAUABpAHgAZQBsAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADMAAAECAQMBBAEFAQYBBwEIAQkBCgELAQwBDQEOAQ8BEAERARIBEwEUARUBFgEXARgBGQEaARsBHAEdAR4BHwEgASEBIgEjASQBJQEmAScBKAEpASoBKwEsAS0BLgEvATABMQEyATMDZzY1A2c2NgNnNjcDZzY4A2c2OQNnNzADZzcxA2c3MgNnNzMDZzc0A2c3NQNnNzYDZzc3A2c3OANnNzkDZzgwA2c4MQNnODIDZzgzA2c4NANnODUDZzg2A2c4NwNnODgDZzg5A2c5MANnNDgDZzQ5A2c1MANnNTEDZzUyA2c1MwNnNTQDZzU1A2c1NgNnNTcDZzQ2A2c1OANnNDcDZzQ1A2czMgRnMjYwBGcyNjIEZzI4MARnMzIxBGczMjMEZzIxMQRnMzQ2BGczNzcEZzM3OQAAAA==) format('truetype');font-display:swap}
+h1,h2,.card-top h3,.brand,nav,.primary,.toggle,.scene-meta strong,.demo{font-family:NocnaPixel,monospace;font-weight:normal;font-synthesis:none;letter-spacing:0}
+.hero-copy{max-width:600px;text-shadow:none}
+.hero-copy h1{font-size:60px;line-height:1.3;letter-spacing:0;margin:18px 0 12px;text-shadow:4px 4px 0 #211b32}
+.hero-copy p,.hero-copy .eyebrow{text-shadow:1px 1px 0 #211b32}
+h2{font-size:30px;line-height:1.5}.card-top h3{font-size:22px;line-height:1.4}
+.brand{font-size:20px}.brand-icon{transform:none}.brand-icon i{box-shadow:none}
+nav{font-size:16px}.primary,.toggle{font-size:16px}.demo{font-size:14px}
+.hero:after{background:none;box-shadow:inset 0 0 0 3px #b8858e20}
+.hero,.district,.console{border-width:2px}.hero{border-color:#79536c;box-shadow:6px 6px 0 #0f101d}
+.primary{box-shadow:4px 0 #734c51,-4px 0 #734c51,0 -4px #e9bd8e,0 4px #734c51,4px 8px #141321;transition:none}
+.primary:hover{transform:translateY(-4px)}.primary:active{transform:translateY(4px);box-shadow:4px 0 #734c51,-4px 0 #734c51,0 -4px #e9bd8e}
+.toggle{box-shadow:inset -3px -3px #141321,inset 3px 3px #ffffff09;border-width:2px}
+.district{box-shadow:4px 4px #0f101d;transition:none}.district:hover{transform:translateY(-4px)}
+.volume{appearance:none;border-radius:0;height:6px;background:#556862;cursor:pointer}.volume::-webkit-slider-thumb{appearance:none;width:12px;height:18px;border:0;border-radius:0;background:var(--mint);box-shadow:3px 3px #111b25}.volume::-moz-range-thumb{width:12px;height:18px;border:0;border-radius:0;background:var(--mint)}
+@media(max-width:1000px){.hero-copy h1{font-size:48px}.hero-copy{max-width:500px}.brand{font-size:17px}nav{font-size:14px}h2{font-size:24px}}
+@media(max-width:650px){.hero-copy h1{font-size:34px;line-height:1.4}.hero-copy{max-width:none}.brand{font-size:14px;gap:6px}nav{font-size:12px;gap:12px}.hero-copy .primary{font-size:14px}.toggle{font-size:14px}.hero-copy p{font-size:13px}h2{font-size:24px}.scene-meta strong{font-size:24px}.card-top h3{font-size:24px}}
+
+.console{flex-wrap:wrap;gap:16px 24px}.control-group{flex-wrap:wrap}.radio{margin-left:auto}.toggle{white-space:nowrap}
+.day-mode .hero-copy{background:#202539e8;box-shadow:4px 0 #202539e8,-4px 0 #202539e8,0 4px #202539e8,0 -4px #202539e8;padding:16px 20px;top:5%;left:4%}
+.day-mode .scene-meta{background:#202539e8;padding:8px 12px}.day-mode .hero-copy h1{font-size:48px}.hero canvas{transition:none}
+@media(max-width:650px){.day-mode .hero-copy{left:6%;right:6%;padding:12px}.day-mode .hero-copy h1{font-size:30px}.radio{margin-left:0}.control-label{min-width:46px}.console{padding:16px 12px}.toggle{padding:7px 8px;font-size:13px}.day-mode .scene-meta{bottom:76px;top:auto}}
+
+/* The start screen leaves negative space for its title and keeps the artwork intact. */
+.hero{height:740px;min-height:600px;border-color:#60576e;box-shadow:6px 6px #0f1524}
+.hero canvas{object-fit:fill;object-position:center}.hero-copy{left:5%;top:8%;max-width:570px}.hero-copy h1{font-size:54px;line-height:1.4;text-shadow:4px 4px #162238}
+.hero-copy p{max-width:345px;font-size:14px;line-height:1.9;color:#d8cbd0;text-shadow:1px 2px #152136}.hero-copy .eyebrow{color:#d1a998;font-size:11px;letter-spacing:2px}.primary{background:#d8a682;box-shadow:4px 0 #775c62,-4px 0 #775c62,0 -4px #e0b898,0 4px #775c62,4px 8px #111a2b}
+.scene-meta{font-size:11px;color:#b7b2c3;right:24px;top:22px}.scene-meta strong{font-size:24px;color:#e7cfb9}.scene-caption{bottom:22px;background:#142033e8;border-left-color:#c69d83}.scene-hint{bottom:24px;background:#142033dd;color:#a7a4b5}.thumb{height:184px}.thumb canvas{object-fit:fill}.day-mode .hero-copy{background:#202b40c9}.day-mode .hero-copy h1{font-size:48px}
+@media(max-width:1000px){.hero{height:670px}.hero-copy h1{font-size:44px}.hero-copy{max-width:470px;top:7%}.hero-copy p{font-size:13px;max-width:310px}.eyebrow{max-width:340px;line-height:1.7}}
+@media(max-width:650px){.hero{height:710px;min-height:710px;background:#1b263d}.hero canvas{top:auto;bottom:74px;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;left:0}.hero-copy{left:7%;right:7%;top:28px;max-width:none}.hero-copy h1{font-size:30px;line-height:1.5;margin:16px 0}.hero-copy p{font-size:12px;line-height:1.9;max-width:100%}.hero-copy .eyebrow{font-size:10px;letter-spacing:1px}.hero-copy .primary{font-size:14px;margin-top:8px}.scene-meta,.day-mode .scene-meta{top:auto;bottom:284px;right:18px;background:transparent;padding:0}.scene-meta strong{font-size:20px}.scene-meta>span:first-child{display:none}.scene-caption{bottom:18px;left:14px;right:14px;max-width:none;font-size:10px}.day-mode .hero-copy{top:24px;left:7%;right:7%;background:none;box-shadow:none;padding:0}.day-mode .hero-copy h1{font-size:30px}.thumb{height:190px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><a class="brand" href="#" aria-label="Nocna zmiana — początek"><span class="brand-icon" aria-hidden="true"><i></i><i></i><i></i></span>NOCNA ZMIANA<span style="color:var(--accent)">.</span></a><nav aria-label="Menu główne"><a class="active" href="#miasto">Miasto</a><a href="#dzielnice">Dzielnice</a><a href="#dziennik" id="journal-link">Dziennik</a></nav><span class="demo">PIXEL EXPERIENCE</span></header>
+<main>
+<section class="hero" id="miasto" aria-label="Interaktywna panorama wieczornego miasta">
+<canvas id="city" width="480" height="270" role="img" aria-label="Animowane pixelartowe miasto: neonowe sklepy, kolejka, światła w oknach i odbicia w deszczu"></canvas>
+<div class="hero-copy"><div class="eyebrow">Gdzieś pomiędzy dniem a nocą</div><h1>Miasto zasypia.<br><span>Ty nie musisz.</span></h1><p>Zgub się w ciepłych światłach okien,<br>szumie deszczu i małych historiach.<br>Tu nigdzie się nie spieszymy.</p><a class="primary" href="#dzielnice">Wybierz swój zakątek</a></div>
+<div class="scene-meta"><span>CZAS LOKALNY MIASTA</span><strong id="scene-time">20:48</strong><span id="weather-label">18°C · lekki deszcz</span></div>
+<div class="scene-caption" id="scene-caption">STARE MIASTO / ostatni tramwaj jeszcze nie odjechał</div><span class="scene-hint">Małe światła, wielkie historie.</span>
+</section>
+<section class="console" aria-label="Sterowanie atmosferą">
+<div class="control-group" aria-label="Pora dnia"><span class="control-label">NIEBO</span><button class="toggle" data-time="day" aria-pressed="false">Dzień</button><button class="toggle" data-time="dusk" aria-pressed="true">Zmierzch</button><button class="toggle" data-time="night" aria-pressed="false">Noc</button></div>
+<div class="control-group" aria-label="Pogoda"><span class="control-label">POGODA</span><button class="toggle" data-weather="clear" aria-pressed="false">Bez opadów</button><button class="toggle" id="rain" data-weather="rain" aria-pressed="true">Deszcz</button><button class="toggle" data-weather="snow" aria-pressed="false">Śnieg</button><button class="toggle" id="pause" aria-pressed="false">Pauza</button></div>
+<div class="radio" id="radio"><button class="radio-button" id="play" aria-label="Włącz radio lo-fi" aria-pressed="false">▶</button><div class="radio-text">Radio po godzinach<span id="track">lo-fi / własna częstotliwość</span></div><div class="equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i></div><input class="volume" id="volume" type="range" min="0" max="100" value="35" aria-label="Głośność radia"></div>
+</section>
+<section id="dzielnice"><div class="intro"><div><div class="section-label">TWÓJ MAŁY ŚWIAT PO GODZINACH</div><h2>Każda ulica ma swój rytm.</h2></div><p>Trzy zakątki. Wybierz, gdzie zostaniesz na chwilę.</p></div>
+<div class="districts">
+<button class="district" data-district="0" aria-pressed="true"><div class="thumb"><canvas width="360" height="160" data-thumb="0" aria-hidden="true"></canvas><span class="tag">ŚWIATŁO W OKNACH</span></div><div class="card-body"><div class="card-top"><h3>Stare Miasto</h3><span>01 /</span></div><p>Ceglane kamienice, witryny i tramwaj.<br>Kawiarnia jest jeszcze otwarta.</p></div></button>
+<button class="district" data-district="1" aria-pressed="false"><div class="thumb"><canvas width="360" height="160" data-thumb="1" aria-hidden="true"></canvas><span class="tag">NA DRUGIM BRZEGU</span></div><div class="card-body"><div class="card-top"><h3>Nad rzeką</h3><span>02 /</span></div><p>Rzeka, kamienny most i mały kuter.<br>Najlepsze miejsce na chwilę ciszy.</p></div></button>
+<button class="district" data-district="2" aria-pressed="false"><div class="thumb"><canvas width="360" height="160" data-thumb="2" aria-hidden="true"></canvas><span class="tag">JESZCZE JEDEN ROZDZIAŁ</span></div><div class="card-body"><div class="card-top"><h3>Dzielnica neonów</h3><span>03 /</span></div><p>Szklane wieżowce, automaty i taksówki.<br>Tutaj wieczór dopiero się zaczyna.</p></div></button>
+</div></section>
+</main>
+<footer class="footer"><span><b>✦</b> Zrobione z pikseli i odrobiny bezsenności.</span><span>INTERAKTYWNY SZKIC / ŻADNEGO POŚPIECHU / 2026</span></footer>
+</div>
+<dialog id="journal"><button class="close" aria-label="Zamknij dziennik">×</button><div class="section-label">ZAPISKI Z NOCNEGO SPACERU</div><h2>20:48. Jeszcze nie wracaj.</h2><p>W kawiarni na rogu ktoś zamówił trzecią herbatę. Tramwaj zadzwonił dwa razy. W oknie na piątym piętrze znów zapaliło się światło.</p><p>„Nocna zmiana” to fikcyjne miasto i mały eksperyment z nastrojem. Możesz zmienić jego wieczór:</p><ul><li>Wybierz dzielnicę, by przenieść się w inne miejsce.</li><li>Wybierz dzień, zmierzch lub noc, dodaj deszcz albo śnieg i zatrzymaj animacje.</li><li>Włącz radio — muzyka powstaje na żywo w przeglądarce.</li></ul><p>Nie ma zadań do wykonania. Po prostu zostań na chwilę.</p></dialog>
+<div class="toast" id="toast" role="status"></div>
+<script>
+(() => {
+'use strict';
+const canvas=document.querySelector('#city'),ctx=canvas.getContext('2d');
+const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+const state={time:'dusk',weather:'rain',paused:reduced.matches,district:0,t:0};
+const names=['Stare Miasto','Nad rzeką','Dzielnica neonów'];
+const captions=['ostatni tramwaj jeszcze nie odjechał','rzeka pamięta wszystkie światła','ten wieczór dopiero się zaczyna'];
+const pixelGlyphs={"A": "01110/10001/10001/11111/10001/10001/10001", "B": "11110/10001/10001/11110/10001/10001/11110", "C": "01111/10000/10000/10000/10000/10000/01111", "D": "11110/10001/10001/10001/10001/10001/11110", "E": "11111/10000/10000/11110/10000/10000/11111", "F": "11111/10000/10000/11110/10000/10000/10000", "G": "01111/10000/10000/10111/10001/10001/01111", "H": "10001/10001/10001/11111/10001/10001/10001", "I": "11111/00100/00100/00100/00100/00100/11111", "J": "00111/00010/00010/00010/00010/10010/01100", "K": "10001/10010/10100/11000/10100/10010/10001", "L": "10000/10000/10000/10000/10000/10000/11111", "M": "10001/11011/10101/10101/10001/10001/10001", "N": "10001/11001/11001/10101/10011/10011/10001", "O": "01110/10001/10001/10001/10001/10001/01110", "P": "11110/10001/10001/11110/10000/10000/10000", "Q": "01110/10001/10001/10001/10101/10010/01101", "R": "11110/10001/10001/11110/10100/10010/10001", "S": "01111/10000/10000/01110/00001/00001/11110", "T": "11111/00100/00100/00100/00100/00100/00100", "U": "10001/10001/10001/10001/10001/10001/01110", "V": "10001/10001/10001/10001/10001/01010/00100", "W": "10001/10001/10001/10101/10101/11011/10001", "X": "10001/10001/01010/00100/01010/10001/10001", "Y": "10001/10001/01010/00100/00100/00100/00100", "Z": "11111/00001/00010/00100/01000/10000/11111", "0": "01110/10011/10101/10101/11001/10001/01110", "1": "00100/01100/00100/00100/00100/00100/01110", "2": "01110/10001/00001/00010/00100/01000/11111", "3": "11110/00001/00001/01110/00001/00001/11110", "4": "00010/00110/01010/10010/11111/00010/00010", "5": "11111/10000/10000/11110/00001/00001/11110", "6": "01110/10000/10000/11110/10001/10001/01110", "7": "11111/00001/00010/00100/01000/01000/01000", "8": "01110/10001/10001/01110/10001/10001/01110", "9": "01110/10001/10001/01111/00001/00001/01110", ".": "00000/00000/00000/00000/00000/00110/00110", ":": "00000/00110/00110/00000/00110/00110/00000", "/": "00001/00001/00010/00100/01000/10000/10000", "-": "00000/00000/00000/11111/00000/00000/00000", " ": "00000/00000/00000/00000/00000/00000/00000"};
+const skyCache=new Map();
+const random=(n)=>{const x=Math.sin(n*127.1+311.7)*43758.5453;return x-Math.floor(x)};
+// Scene coordinates use a shared two-unit pixel grid (480 x 270 native pixels).
+// Each apartment has a stable, independent occupancy schedule, never strobing.
+function windowIsLit(seed,t,day){
+ if(day)return false;
+ const interval=28+random(seed+1700)*62;
+ const phase=random(seed+2900)*interval;
+ const epoch=Math.floor((t+phase)/interval);
+ return random(seed+epoch*413.7)>.47;
+}
+function paint(c,w,h,t,d,time,weather,thumbnail=false){
+ c.save();c.imageSmoothingEnabled=false;c.scale(w/960,h/540);
+ const day=time==='day',night=time==='night',snow=weather==='snow',wet=weather==='rain';
+ const R=(x,y,a,b,col)=>{if(a<=0||b<=0)return;c.fillStyle=col;c.fillRect(Math.round(x/2)*2,Math.round(y/2)*2,Math.max(2,Math.round(a/2)*2),Math.max(2,Math.round(b/2)*2))};
+ const T=(label,x,y,col,size=2)=>[...label.toUpperCase()].forEach((ch,i)=>(pixelGlyphs[ch]||pixelGlyphs[' ']).split('/').forEach((row,yy)=>[...row].forEach((v,xx)=>{if(v==='1')R(x+(i*6+xx)*size,y+yy*size,size,size,col)})));
+ const P=(points,col)=>{c.fillStyle=col;c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(Math.round(x/2)*2,Math.round(y/2)*2):c.moveTo(Math.round(x/2)*2,Math.round(y/2)*2));c.closePath();c.fill()};
+ const sky=day?['#456e91','#86a8b3','#d4c6ae']:night?['#11182f','#292a49','#5f4056']:['#19233e','#48415f','#a16f80'];
+ const key='art2'+sky.join();if(!skyCache.has(key)){
+  const el=document.createElement('canvas');el.width=480;el.height=270;const sc=el.getContext('2d');
+  const colors=Array.from({length:24},(_,k)=>{const v=k/23,i=v<.52?0:1,f=v<.52?v/.52:(v-.52)/.48,a=sky[i].match(/\w\w/g).map(v=>parseInt(v,16)),b=sky[i+1].match(/\w\w/g).map(v=>parseInt(v,16));return `rgb(${a.map((v,j)=>Math.round(v+(b[j]-v)*f)).join(',')})`});
+  for(let y=0;y<270;y++){const p=Math.min(y/190,1)*23,k=Math.floor(p);sc.fillStyle=colors[k];sc.fillRect(0,y,480,1);if(p-k>.6){sc.fillStyle=colors[Math.min(23,k+1)];for(let x=y%2;x<480;x+=2)sc.fillRect(x,y,1,1)}}skyCache.set(key,el);
+ }
+ c.drawImage(skyCache.get(key),0,0,960,540);
+ if(!day)for(let i=0;i<38;i++){const x=35+random(i+7)*890,y=20+random(i+78)*176;R(x,y,2,2,i%7?'#a19aae':'#dfc8c4');if(i%13===0)R(x-2,y,6,2,'#b8a6bb')}
+ // Soft, quantized moon halo, kept within the upper-right focal area.
+ const mx=766,my=94,mr=19;
+ if(!day){for(let ring=4;ring>0;ring--){c.globalAlpha=.012+(.008*(4-ring));for(let yy=-mr-ring*6;yy<=mr+ring*6;yy+=2)for(let xx=-mr-ring*6;xx<=mr+ring*6;xx+=2)if(xx*xx+yy*yy<(mr+ring*6)**2)R(mx+xx,my+yy,2,2,'#f3c49b')}c.globalAlpha=1}
+ if(day){
+  // Hand-built 4-unit sun sprite with a stepped silhouette and amber pixels.
+  R(mx-8,my-24,16,4,'#eac08b');R(mx-16,my-20,32,4,'#f3cf95');R(mx-20,my-16,40,8,'#f8dba0');R(mx-24,my-8,48,16,'#f8dba0');R(mx-20,my+8,40,8,'#f0c78e');R(mx-16,my+16,32,4,'#ddb083');R(mx-8,my+20,16,4,'#d2a27d');
+  R(mx-12,my-12,24,20,'#ffe7ad');R(mx-8,my-16,16,4,'#fff0b9');R(mx-16,my-8,4,12,'#ffebb0');R(mx-8,my+8,16,4,'#f8d799');R(mx+12,my-4,4,12,'#e6b683');
+  for(const [xx,yy] of [[-8,-8],[4,-12],[-12,4],[8,8],[0,12],[16,0]])R(mx+xx,my+yy,4,4,'#eec58d');
+  R(mx-4,my-12,4,4,'#fff3c0');R(mx+4,my-4,4,4,'#ffeeb6');R(mx-16,my+12,4,4,'#cda080');
+ }else{
+ for(let yy=-mr;yy<=mr;yy+=2)for(let xx=-mr;xx<=mr;xx+=2){const rr=xx*xx+yy*yy;if(rr>mr*mr)continue;let col=day?'#ffe0a5':rr>(mr-2)**2?'#d2a891':xx+yy*.4>11?'#ddb59b':'#f0cfac';if(!day)for(const [cx,cy,cr] of [[-6,-7,5],[7,6,5],[-7,9,3],[9,-8,3]]){const r=(xx-cx)**2+(yy-cy)**2;if(r<cr*cr)col=r>(cr-2)**2?'#e3bb9f':random(xx*19+yy)>.5?'#bf9690':'#cda38f'}R(mx+xx,my+yy,2,2,col)}
+ }
+ // Composed banks of clouds, with separate distant wisps and nearer volumes.
+ function cloud(cx,cy,cw,ch,seed,near){
+  const colors=day?['#e7dcca','#c3c9c5','#9caeb8','#8394a7']:night?['#6b6077','#504c66','#3c3c57','#30334d']:['#a78b9b','#82768e','#625c79','#4c4b6b'];
+  const travel=t*(near?7:2.8),loop=960+cw+160;const drift=Math.floor((((cx+travel+cw+80)%loop)-cw-80-cx)/2)*2,offset=Math.sin(seed*3)*4;
+  const lobes=Array.from({length:6},(_,i)=>({x:cw*(.08+i*.168),r:cw*(.13+random(seed*91+i)*.09),h:ch*(.3+random(seed*51+i)*.7)}));
+  for(let px=0;px<cw;px+=2){const u=px/cw,taper=Math.pow(Math.sin(u*Math.PI),.5),top=taper*Math.max(0,...lobes.map(l=>{const dx=(px-l.x)/l.r;return Math.abs(dx)<1?Math.sqrt(1-dx*dx)*l.h:0}));if(top<2)continue;const low=(Math.sin(u*15+seed)*2+4)*Math.sin(u*Math.PI);
+   for(let py=-Math.round(top/2)*2;py<=low;py+=2){const f=(py+top)/(top+low),rim=py<-top+3,tone=rim?0:f<.34?1:f<.74?2:3;let col=colors[tone];if(!near&&tone===0)col=colors[1];if(rim&&cx+px>650&&cx+px<820)col=day?'#f6e2c2':night?'#a49bab':'#d4b0b0';if(!day&&!night&&py>low-2&&cx+px<680)col='#8c6d80';if(random(px*13+py*7+seed)>.93&&tone>0)col=colors[tone-1];R(cx+px+drift,cy+py+offset,2,2,col)}
+  }
+ }
+ cloud(-60,74,270,13,2,false);cloud(270,56,220,9,4,false);cloud(490,139,240,16,7,false);cloud(807,174,225,19,9,false);
+ cloud(580,128,280,32,12,true);cloud(18,186,195,18,15,true);cloud(380,210,140,13,18,true);
+ // Haze separates three city planes; no repeating foreground wall.
+ for(let layer=0;layer<2;layer++){const color=day?(layer?'#7b8490':'#9a9aa0'):(layer?'#454057':'#635569');for(let i=0;i<18;i++){const bx=i*61+layer*16,bh=34+random(i+layer*81)*100,by=335-bh;R(bx,by,53,bh,color);R(bx+8,by-6,37,6,color);if(i%3===0)R(bx+36,by-16,6,12,color);if(layer)for(let q=0;q<8;q++)if(random(i*23+q)>.63)R(bx+10+q%4*10,by+18+Math.floor(q/4)*18,2,4,day?'#b6aca3':'#a07880')}}
+ c.globalAlpha=.1;R(0,294,960,64,day?'#dfcdb1':'#e4a193');c.globalAlpha=1;
+ const water=d===1,ground=water?339:371;
+ const sources=[];
+ const buildings=d===0?[
+  {x:-30,w:136,top:261,c:0,roof:1},{x:111,w:117,top:239,c:1,roof:0},{x:234,w:116,top:268,c:2,roof:1},
+  {x:370,w:112,top:218,c:0,roof:2},{x:491,w:126,top:187,c:2,roof:0},{x:627,w:149,top:211,c:1,roof:1},{x:787,w:128,top:169,c:0,roof:2},{x:924,w:116,top:224,c:2,roof:1}
+ ]:water?[
+  {x:-25,w:153,top:234,c:2,roof:1},{x:141,w:133,top:219,c:0,roof:2},{x:289,w:129,top:251,c:1,roof:1},{x:435,w:161,top:215,c:2,roof:0},{x:610,w:140,top:192,c:0,roof:2},{x:765,w:124,top:224,c:1,roof:1},{x:901,w:124,top:239,c:0,roof:0}
+ ]:[
+  {x:-30,w:164,top:251,c:2,roof:0},{x:148,w:128,top:217,c:0,roof:0},{x:290,w:145,top:235,c:1,roof:2},{x:449,w:151,top:153,c:2,roof:0},{x:614,w:159,top:188,c:0,roof:0},{x:787,w:144,top:134,c:1,roof:0},{x:944,w:130,top:204,c:2,roof:2}
+ ];
+ function neon(label,x,y,width,color){
+  R(x-3,y-4,width+6,24,'#1a2434');R(x,y-2,width,20,'#322b3e');
+  if(!day){c.globalAlpha=.08;R(x-8,y-8,width+16,32,color);for(let off=4;off>=2;off-=2){c.globalAlpha=off===2?.18:.07;for(const [dx,dy] of [[-off,0],[off,0],[0,off],[0,-off]])T(label,x+(width-(label.length*12-2))/2+dx,y+dy,color)}c.globalAlpha=1}
+  T(label,x+(width-(label.length*12-2))/2,y,day?color:'#ffe8d2');R(x,y-2,width,2,color);R(x,y+16,width,2,color);R(x,y-2,2,20,color);R(x+width-2,y-2,2,20,color);
+  sources.push({x:x+width/2,y:ground+9,w:width*.4,col:color,power:day?.08:.28});
+ }
+ buildings.forEach((b,i)=>{
+  const {x,w,top,c:ci,roof}=b,base=day?['#837e83','#ad8c7e','#767c87'][ci]:['#3d344a','#644450','#464054'][ci],edge=day?'#b3a18f':['#796070','#aa7d7d','#7b697f'][ci],shade=day?'#5f626e':'#25283b',trim=day?'#c0ab94':'#8f7180';
+  R(x-4,top+8,w+10,ground-top-5,'#24293c');R(x,top,w,ground-top,base);R(x+w-16,top,16,ground-top,shade);R(x+3,top,4,ground-top,edge);
+  // Sparse exposed brick and plaster patches; quiet walls support the windows.
+  for(let q=0;q<70;q++){const px=x+9+random(i*61+q)*(w-32),py=top+8+random(i*117+q)*(ground-top-46);if(q%4===0){R(px,py,8,2,edge);R(px+4,py+2,2,2,shade)}else if(q%3===0)R(px,py,2,2,edge)}
+  R(x-4,top-7,w+8,5,shade);R(x-2,top-2,w+4,4,trim);R(x+2,top+4,w-4,2,edge);
+  if(roof===1){for(let yy=0;yy<26;yy+=2){const inset=yy*.95;R(x+inset,top-8-yy,w-inset*2,2,yy%6?'#5d4356':'#8c6271')}R(x+w*.67,top-42,8,18,shade);R(x+w*.67-2,top-44,12,4,trim)}
+  if(roof===2){R(x+8,top-15,w-16,8,shade);R(x+16,top-21,w-32,6,base);R(x+24,top-25,w-48,4,edge);R(x+w-28,top-38,8,18,shade);R(x+w-30,top-40,12,3,trim)}
+  if(roof===0){R(x+w*.6,top-18,19,11,shade);R(x+w*.6-3,top-20,25,3,edge)}
+  if(snow)R(x-3,top-9,w+6,4,'#cbd3db');
+  const columns=Math.floor((w-27)/24),rows=Math.floor((ground-top-52)/29),start=x+14;
+  for(let row=0;row<rows;row++)for(let col=0;col<columns;col++){
+   const wx=start+col*24,wy=top+15+row*29,lit=windowIsLit(i*171+row*19+col*3,t,day),curtain=random(i*29+row*37+col)>.5;
+   R(wx-3,wy-3,17,22,shade);R(wx-1,wy-1,13,18,edge);R(wx,wy,11,16,lit?'#d99f77':day?'#77909b':'#343c50');
+   if(lit){R(wx+2,wy+2,7,9,'#f6ce93');R(wx+2,wy+12,7,2,'#c48b70');if(row===rows-1)sources.push({x:wx+5,y:ground+11,w:8,col:'#e3af85',power:.11})}
+   else{R(wx+2,wy+2,3,6,day?'#bed0cb':'#516073');if((col+row+i)%4===0)for(let q=0;q<4;q++)R(wx,wy+q*3,11,2,day?'#80898e':'#555366')}
+   if(curtain){R(wx,wy,2,14,lit?'#ae7470':shade);R(wx+9,wy,2,16,lit?'#be8777':shade)}
+   R(wx+5,wy,2,16,shade);R(wx,wy+8,11,2,shade);R(wx-4,wy+18,19,3,trim);R(wx-2,wy+21,16,2,shade);
+   if(row===1&&(col+i)%3===0){R(wx-6,wy+19,23,8,shade);R(wx-7,wy+19,25,2,edge);for(let q=0;q<5;q++)R(wx-5+q*5,wy+21,2,6,edge);R(wx-1,wy+15,8,4,'#5f695b');R(wx+1,wy+11,4,5,day?'#82946b':'#63745e')}
+   if(snow)R(wx-4,wy+17,19,2,'#d6dbe0');
+  }
+  const sy=ground-40,display=w-46;R(x+5,sy-6,w-10,46,shade);R(x+8,sy-4,w-16,3,trim);
+  R(x+10,sy,display,32,day?'#819b9c':'#75555b');R(x+12,sy+2,display-4,8,day?'#b5b9a4':'#c49a7d');R(x+12,sy+10,display-4,18,day?'#82958b':'#856159');R(x+12,sy+28,display-4,4,'#4c3d46');
+  // Distinct vignettes: counter and cups, books, produce, a closed shutter.
+  if(i%4===0){for(let q=0;q<5;q++)R(x+12,sy+q*6,display-4,2,day?'#9d9c98':'#77636f');R(x+20,sy+26,12,2,'#2f2d3e')}
+  else if(i%3===0){R(x+14,sy+22,display-8,4,'#b48569');for(let q=0;q<3;q++){R(x+19+q*18,sy+18,6,4,'#e6c29a');R(x+25+q*18,sy+18,2,2,'#cc9d81');R(x+22+q*18,sy+28,2,5,shade)}}
+  else{for(let shelf=0;shelf<2;shelf++){R(x+14,sy+13+shelf*12,display-8,2,'#493a46');for(let q=0;q<Math.floor((display-8)/7);q++){const gx=x+16+q*7,gy=sy+6+shelf*12;R(gx,gy+q%2*2,4,6,['#ae8e80','#b5b08b','#86988a','#be9e86'][(q+i)%4]);if(i%3===1)R(gx,gy,2,2,'#e0cba9')}}}
+  R(x+10+display/2,sy,3,32,shade);R(x+10,sy,2,32,trim);for(let q=0;q<4;q++)R(x+18+q*4,sy+3+q*4,2,4,day?'#c6d6cd66':'#ecd2a331');
+  const dx=x+w-30;R(dx,sy-2,20,36,'#343044');R(dx+3,sy+1,14,23,day?'#7e9a9d':'#d0a384');R(dx+5,sy+3,2,18,day?'#bbc9c5':'#ebc39a');R(dx+14,sy+26,2,3,'#e7c994');R(dx+3,sy+30,14,3,'#715461');R(dx-2,ground-3,24,3,edge);
+  if(i%4!==0){R(x+9,sy-5,display+3,4,'#b58c7a');for(let q=0;q<display;q+=12){R(x+10+q,sy-5,6,8,'#dec19a')}R(x+10,sy-7,display,2,shade)}
+  if(d===0&&[3,5,6].includes(i))neon(i===3?'KINO':i===5?'KAWA':'NOCNY',x+9,sy-23,w-25,i===3?'#d58fac':i===5?'#eec593':'#90c8b4');
+  if(d===2&&i>2)neon(i===3?'KINO':i===4?'RAMEN':'ARCADE',x+10,sy-24,w-28,i%2?'#b68bc8':'#7bc7c6');
+  if(water&&i===4)neon('PORT',x+8,sy-23,w-24,'#d4ba9e');
+  if(i===5&&d===0){R(x+21,ground-7,12,7,'#795856');R(x+19,ground-12,16,6,'#4e685b');R(x+24,ground-17,6,8,'#71816a')}
+ });
+ // Road and quay lighting has direction: each streak sits below its source.
+ const asphalt=day?'#576575':'#1d293b',curb=day?'#9b9b96':'#686174';
+ R(0,ground,960,540-ground,water?(day?'#4d7b8c':'#1b3045'):asphalt);
+ R(0,ground,960,17,curb);R(0,ground+17,960,4,day?'#65727e':'#121f31');R(0,ground+15,960,2,day?'#c9bb9f':'#9c828b');
+ for(let q=0;q<24;q++){R(q*44,ground+3,2,12,day?'#757e84':'#484659');if(q%3===0)R(q*44+6,ground+7,18,2,day?'#b3aaa0':'#84707d')}
+ const start=ground+23,end=water?491:516;
+ if(water||wet){
+  for(const src of sources){for(let yy=start;yy<end;yy+=4){const depth=(yy-start)/(end-start),r=random(Math.floor(yy/4)*31+src.x);if(r<.28)continue;const wide=(src.w*.34+depth*src.w*.8)*(r*.8+.4),jitter=Math.sin(yy*.17+t+src.x)*3; c.globalAlpha=src.power*(1-depth*.65);R(src.x-wide*.5+jitter,yy,wide,2,src.col)}}c.globalAlpha=1;
+  for(const [lx,col,power] of [[539,'#d9b58c',.25],[881,'#d4ad89',.25],[766,'#aaa6ac',.12]])for(let yy=start+8;yy<end;yy+=4){const f=(yy-start)/(end-start);c.globalAlpha=power*(1-f*.6);R(lx-6-f*19+Math.sin(yy*.16+t)*4,yy,12+f*38,2,col)}c.globalAlpha=1;
+ }
+ if(water){
+  for(let i=0;i<125;i++){const yy=365+random(i+801)*124;R(random(i+701)*960+Math.sin(t*.5+i)*3,yy,4+random(i+901)*24,2,day?'#8dadae':'#3a5063')}
+  // Bridge recedes to the right bank, its arches sit above the river.
+  R(685,ground+4,275,8,day?'#9f9794':'#62576a');for(let bx=697;bx<960;bx+=76){R(bx,ground+12,10,27,'#424458');R(bx+10,ground+12,18,4,curb);R(bx+28,ground+12,20,2,curb)}
+  const bx=((t*28+725)%1130)-85;R(bx,437,66,6,'#9f7d80');R(bx+8,443,49,4,'#594a61');R(bx+22,420,26,17,'#b7a99a');R(bx+27,424,8,7,'#475c70');R(bx+39,424,6,7,'#475c70');R(bx+35,407,2,13,'#a3a1a1');for(let q=0;q<6;q++){const wake=6+q*4;R(bx-10-q*10,445+q%2*2,wake,2,day?'#a2bbb9':'#546d7e')}R(bx+6,440,52,2,'#c29d8d');
+  R(0,491,960,49,day?'#7d8990':'#373b50');R(0,488,960,3,'#152236');for(let xx=0;xx<960;xx+=25)R(xx,488,2,20,'#152236');R(0,506,960,3,'#152236');
+ }else{
+  // Asphalt uses broad tonal planes and restrained grain instead of tiling.
+  c.globalAlpha=.3;R(0,414,960,20,day?'#4e5f6e':'#121f31');R(0,465,960,24,day?'#526271':'#142135');c.globalAlpha=1;
+  for(let i=0;i<170;i++)R(random(i+2100)*960,ground+27+random(i+2300)*126,2,2,day?'#7c8790':'#344052');
+  for(let q=0;q<7;q++){let px=random(q+4100)*960,py=419+random(q+4300)*85;for(let j=0;j<4;j++){R(px,py,6,2,day?'#485868':'#172236');px+=4;py+=j%2?2:0}}
+  // Level rail pairs and horizontal paint keep the entire street aligned.
+  R(0,432,960,2,'#88909e');R(0,435,960,2,'#111e30');R(0,451,960,2,'#6b7588');R(0,454,960,2,'#101d2f');
+  for(let px=35;px<960;px+=118){const y=486;R(px,y,38,2,day?'#c0b9a8':'#8c8590');R(px+8,y,4,2,asphalt)}
+  // Shallow puddles have broken, stepped shores and restrained light glints.
+  if(wet){for(const [px,py,pw] of [[310,468,76],[650,496,100],[858,466,66]]){
+   R(px+12,py-4,pw-24,2,day?'#465e71':'#122439');R(px+4,py-2,pw-8,8,day?'#4b667a':'#172c42');R(px+16,py+6,pw-32,2,day?'#8fa2aa':'#506075');
+   c.globalAlpha=.38;R(px+pw*.3+Math.sin(t+px)*2,py,pw*.28,2,day?'#b1c0bf':'#b59f9e');R(px+pw*.46,py+4,pw*.17,2,day?'#c5c9bb':'#b5aaad');c.globalAlpha=1;
+  }}
+  R(0,518,960,3,curb);R(0,522,960,18,day?'#76838b':'#31394c');
+  [204,804].forEach(px=>{const yy=ground+24;R(px,yy,24,6,'#152237');for(let j=0;j<5;j++)R(px+3+j*4,yy+2,2,2,'#556174')});
+  // Tram follows the far rail. Full vehicle stays inside the scene at rest.
+  const tx=((t*18+360)%1230)-180,ty=424;
+  // Layered bodywork, rivets and individual glass panes replace the flat slab.
+  R(tx+6,ty-34,116,4,'#655e70');R(tx+2,ty-30,124,24,'#aa7a78');R(tx,ty-25,129,17,'#c99a80');R(tx+3,ty-9,122,4,'#785663');R(tx+5,ty-5,118,4,'#383749');
+  R(tx+8,ty-29,112,2,'#e0b797');R(tx+5,ty-12,118,2,'#e3b594');R(tx+3,ty-7,122,2,'#a07070');
+  for(let q=0;q<6;q++){
+   const wx=tx+10+q*16;R(wx-2,ty-27,14,17,'#5a4c5c');R(wx,ty-25,10,12,day?'#73919d':'#d4ad83');R(wx+2,ty-24,6,8,day?'#a6bdc0':'#f1cf97');R(wx+1,ty-24,2,10,day?'#d4dfd0':'#ffe2a7');R(wx+8,ty-23,2,9,'#927578');R(wx,ty-19,10,2,'#817080');
+   if(q%2===0){R(wx+3,ty-17,3,4,day?'#586e7f':'#9e7b70');R(wx+4,ty-13,5,2,'#695866')}
+   R(wx+2,ty-7,2,2,'#d6b298');
+  }
+  // Folding doors, destination display, front glazing and lower ventilation.
+  R(tx+106,ty-27,15,24,'#4a4255');R(tx+108,ty-24,5,15,day?'#8babb2':'#d8b790');R(tx+115,ty-24,4,15,day?'#7897a3':'#d1a77e');R(tx+113,ty-25,2,23,'#443f53');R(tx+108,ty-6,11,2,'#b79887');
+  R(tx+96,ty-31,24,5,'#34384c');R(tx+99,ty-30,4,2,'#e5c695');R(tx+106,ty-30,10,2,'#cda878');R(tx+123,ty-25,4,10,'#697b8d');
+  R(tx+8,ty-33,28,2,'#a49a99');R(tx+43,ty-35,25,3,'#a19594');for(let q=0;q<4;q++)R(tx+47+q*5,ty-35,2,2,'#665e70');
+  for(let q=0;q<6;q++)R(tx+36+q*5,ty-7,3,2,'#493b4d');
+  for(const wheel of [18,98]){R(tx+wheel-2,ty-3,14,6,'#141e30');R(tx+wheel,ty-5,10,10,'#1b2436');R(tx+wheel+2,ty-3,6,6,'#586273');R(tx+wheel+4,ty-1,2,2,'#a0a2a1')}
+  R(tx-1,ty-9,4,3,'#b78b86');R(tx+126,ty-16,3,5,'#fae4b0');R(tx+124,ty-5,5,2,'#b6a496');R(tx+58,ty-46,2,12,'#303249');R(tx+52,ty-46,15,2,'#79717c');
+  if(snow){R(tx+8,ty-35,27,2,'#cdd8dc');R(tx+71,ty-34,40,2,'#d9dfe0')}
+  if(d===2){for(let j=0;j<6;j++)R(786+j*18,466,8,31,'#a8a4ac')}
+ }
+ // A small shelter with backlit timetable, bench and a waiting passenger.
+ const sx=414,sy=ground-42;
+ if(!water){R(sx-5,sy-4,85,5,'#242b3e');R(sx,sy,3,43,'#242b3e');R(sx+72,sy,3,43,'#242b3e');R(sx+3,sy+2,66,33,day?'#819ba455':'#7993a522');R(sx+25,sy+2,2,33,'#596475');R(sx+5,sy+30,56,3,'#a78477');R(sx+10,sy+33,2,9,'#303045');R(sx+54,sy+33,2,9,'#303045');R(sx+43,sy+5,18,23,'#b6bba9');for(let j=0;j<4;j++)R(sx+47,sy+10+j*4,10,2,'#7a8588');R(sx+82,sy-12,3,54,'#5f6475');R(sx+76,sy-21,16,15,'#b8c6c5');R(sx+79,sy-18,10,9,'#405a73');T('T',sx+81,sy-17,'#e0d3b7',1);if(snow)R(sx-5,sy-6,85,3,'#cfd7df')}
+ // Warm streetlights are grounded at the curb, with stepped cones of light.
+ for(const lx of [539,881]){
+  const gy=water?516:ground+11;R(lx,gy-96,3,96,'#19253a');R(lx-3,gy,10,4,'#162237');R(lx,gy-98,23,3,'#283349');R(lx+20,gy-96,7,6,day?'#b8bcae':'#f3d7a0');
+  if(!day){for(let q=10;q>0;q--){c.globalAlpha=.008;P([[lx+23,gy-91],[lx+23-q*4,gy+3],[lx+23+q*4,gy+3]],'#ffd29a')}c.globalAlpha=1;R(lx+18,gy-95,11,2,'#fff0bd')}
+  if(snow)R(lx+17,gy-98,13,2,'#dce1e2');
+ }
+ // A continuous foreground promenade, inspired by a hand-built game tileset.
+ // Its rail, walking surface and mechanical underside are separate depth planes.
+ const deck=490;
+ R(0,deck-21,960,3,'#25283d');R(0,deck-18,960,2,day?'#9a92a0':'#6a637e');R(0,deck-6,960,3,'#21283e');
+ for(let px=0;px<960;px+=42){R(px,deck-22,5,24,'#1c2539');R(px,deck-22,2,22,day?'#a5a2a5':'#756b86');R(px-2,deck,9,4,'#1a2539')}
+ R(0,deck+2,960,12,day?'#8e929a':'#625f78');R(0,deck+2,960,2,day?'#c4bcb1':'#a293a0');R(0,deck+13,960,4,'#1a2337');
+ for(let px=0;px<960;px+=96){
+  R(px,deck+4,2,10,'#303247');R(px+2,deck+11,90,2,day?'#5d6a79':'#3f4059');
+  R(px+13,deck+7,3,2,day?'#d4c4a2':'#c1a282');
+  if(px%192===0){R(px+40,deck+5,28,6,'#252b40');for(let q=0;q<5;q++)R(px+44+q*4,deck+6,2,4,'#737086')}
+  for(let q=0;q<3;q++)R(px+72+q*6,deck+11,4,2,day?'#c6af76':'#c4a178');
+ }
+ R(0,deck+17,960,33,day?'#424c63':'#292f48');
+ for(let px=0,index=0;px<960;px+=96,index++){
+  const glow=index%3===1?'#8bc5bd':'#e1b67f';
+  R(px+7,deck+20,82,25,'#1d273d');R(px+9,deck+22,78,21,day?'#596075':'#3d405d');R(px+10,deck+22,76,2,'#767088');
+  if(index%2===0){
+   R(px+25,deck+26,48,13,'#182237');R(px+28,deck+28,42,2,glow);R(px+28,deck+33,42,2,index%3?'#8b969d':glow);R(px+28,deck+38,42,2,'#1b2338');
+   if(!day){c.globalAlpha=.10;R(px+23,deck+25,52,16,glow);c.globalAlpha=1}
+  }else{
+   R(px+17,deck+27,20,13,'#55546b');R(px+19,deck+29,2,2,'#9b91a0');R(px+31,deck+36,2,2,'#1c263c');
+   for(let q=0;q<5;q++)R(px+49,deck+27+q*3,28,2,'#242c44');
+  }
+  R(px,deck+16,7,34,'#182238');R(px+2,deck+18,2,28,'#6c647b');R(px+1,deck+19,11,8,'#35354d');R(px+3,deck+21,7,3,glow);R(px+3,deck+37,3,7,index%3?'#c7a67e':'#79b9b5');
+  R(px+11,deck+43,74,2,'#1b253b');
+ }
+ if(snow)for(let q=0;q<32;q++)R(q*31+random(q+44)*8,deck+3,8+random(q+71)*12,2,'#c5d2dc');
+ // Small pedestrians travel in both directions, with distinct clothes and walk cycles.
+ const pedestrians=water?[
+  {start:115,speed:10,dir:1,lane:0},{start:565,speed:13,dir:-1,lane:2},{start:845,speed:8,dir:1,lane:0}
+ ]:[
+  {start:128,speed:9,dir:1,lane:0},{start:494,speed:12,dir:-1,lane:2},{start:749,speed:8,dir:1,lane:0},{start:910,speed:11,dir:-1,lane:3}
+ ];
+ pedestrians.forEach((person,i)=>{
+  const period=1020,pos=((person.start+person.dir*t*person.speed+period*100)%period)-30;
+  const px=Math.round(pos/2)*2,py=water?deck+10+person.lane:ground+9+person.lane;
+  const step=Math.floor(t*person.speed*.45+i*2)%4,spread=step%2===0?2:0,lead=step===0?person.dir*2:step===2?-person.dir*2:0;
+  const coats=['#6e8297','#ad858b','#a69275','#6f8e85'],coat=coats[i%4],pants='#253047';
+  c.globalAlpha=.22;R(px-4,py+1,14,2,'#121e30');c.globalAlpha=1;
+  R(px,py-21,5,5,'#b99180');R(px-1,py-22,6,2,i%2?'#4c4052':'#6c5661');R(px+person.dir*4,py-19,2,2,'#d4aa8a');
+  R(px-2,py-16,9,10,coat);R(px-2,py-15,2,8,'#49536b');R(px+1,py-14,2,6,'#c2ac9b');
+  R(px-3-lead,py-14,2,7,coat);R(px+7+lead,py-14,2,7,coat);R(px-3-lead,py-7,2,2,'#b99180');
+  R(px-spread,py-6,3,6,pants);R(px+4+spread,py-6,3,6,pants);R(px-spread+person.dir*2,py,4,2,'#182237');R(px+4+spread,py,4,2,'#182237');
+  if(i%3===2){R(px-person.dir*5,py-13,4,7,'#746052');R(px-person.dir*5,py-13,4,2,'#ba9a78')}
+  if(wet){R(px-10,py-25,25,3,['#947e9c','#ae8e91','#7d9996'][i%3]);R(px-6,py-29,17,4,['#ae97af','#b6a097','#9bb1a4'][i%3]);R(px+3,py-23,2,12,'#4a445b')}
+  if(snow){R(px-1,py-23,7,3,'#ba9894');R(px+1,py-24,3,2,'#d6b6a0')}
+ });
+ if(snow){for(let i=0;i<60;i++){const yy=water?510+random(i+4100)*20:ground+random(i+4100)*16;R(random(i+5100)*960,yy,4+random(i+6100)*11,2,'#bdcbd7')}if(!thumbnail)for(let i=0;i<82;i++){const py=(random(i+1300)*560+t*(16+random(i+800)*20))%560,px=(random(i+1200)*1000+Math.sin(t*.6+i)*12)%1000;R(px,py,2,2,i%3?'#e0e2e2':'#9eb4cc');if(i%13===0)R(px-2,py,6,2,'#e9e9e3')}}
+ if(wet&&!thumbnail){for(let i=0;i<84;i++){const speed=80+random(i)*90,px=(random(i+900)*1040-t*speed*.14)%1040,py=(random(i+1000)*580+t*speed)%580;R(px<0?px+1040:px,py,2,4+random(i+15)*6,day?'#cfdbdb35':'#c5c8d32d')}for(let i=0;i<12;i++){const p=(t+random(i))%1;if(p<.3)R(random(i+800)*960,425+random(i+700)*83,4+p*18,2,'#a0a5b733')}}
+ // Dark framing at the very bottom creates a foreground plane.
+ R(0,538,960,2,'#131e30');
+ c.restore();
+}
+function render(){paint(ctx,canvas.width,canvas.height,Math.floor(state.t*12)/12,state.district,state.time,state.weather)}
+function thumbnails(){document.querySelectorAll('[data-thumb]').forEach(el=>paint(el.getContext('2d'),el.width,el.height,5,+el.dataset.thumb,state.time,state.weather,true))}
+let last=performance.now(),frame;
+function loop(now){const dt=Math.min((now-last)/1000,.06);last=now;if(!state.paused&&!document.hidden){const previous=Math.floor(state.t*12);state.t+=dt;if(Math.floor(state.t*12)!==previous)render()}frame=requestAnimationFrame(loop)}
+render();document.fonts.ready.then(render);frame=requestAnimationFrame(loop);
+thumbnails();
+const toast=document.querySelector('#toast');let toastTimer;
+function tell(text){toast.textContent=text;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),3000)}
+function updateAtmosphere(){
+ const label=state.weather==='rain'?'lekki deszcz':state.weather==='snow'?'opady śniegu':'bez opadów';
+ const temp=state.weather==='snow'?(state.time==='night'?'-5':'-2'):(state.time==='day'?'22':state.time==='night'?'14':'18');
+ document.querySelector('#weather-label').textContent=temp+'°C · '+label;
+ document.querySelector('#scene-time').textContent=state.time==='day'?'14:32':state.time==='night'?'23:16':'20:48';
+ document.querySelector('.hero').classList.toggle('day-mode',state.time==='day');
+ document.querySelector('.hero-copy h1').innerHTML=state.time==='day'?'Miasto żyje.<br><span>Poczuj ten rytm.</span>':'Miasto zasypia.<br><span>Ty nie musisz.</span>';
+ document.querySelector('.hero-copy .eyebrow').textContent=state.time==='day'?'Małe historie w świetle dnia':'Gdzieś pomiędzy dniem a nocą';
+ document.querySelector('.hero-copy p').innerHTML=state.weather==='snow'?'Miękki śnieg na dachach i parapetach.<br>Każdy płatek rysuje nową historię.<br>Zostań tu na jeszcze jedną chwilę.':state.time==='day'?'Słońce na fasadach, odbicia w szybach.<br>Miasto ma dziś zupełnie inny rytm.<br>Rozejrzyj się. Tu nie trzeba się spieszyć.':'Zgub się w ciepłych światłach okien,<br>'+ (state.weather==='rain'?'szumie deszczu i małych historiach.':'cichych ulicach i małych historiach.')+'<br>Tu nigdzie się nie spieszymy.';
+ document.querySelectorAll('[data-time]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.time===state.time)));
+ document.querySelectorAll('[data-weather]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.weather===state.weather)));
+ render();thumbnails();
+}
+ document.querySelectorAll('[data-time]').forEach(b=>b.addEventListener('click',()=>{state.time=b.dataset.time;updateAtmosphere()}));
+ document.querySelectorAll('[data-weather]').forEach(b=>b.addEventListener('click',()=>{state.weather=b.dataset.weather;updateAtmosphere()}));
+const pause=document.querySelector('#pause');pause.setAttribute('aria-pressed',String(state.paused));pause.textContent=state.paused?'Wznów':'Pauza';pause.addEventListener('click',()=>{state.paused=!state.paused;pause.setAttribute('aria-pressed',String(state.paused));pause.textContent=state.paused?'Wznów':'Pauza';render()});
+document.querySelectorAll('[data-district]').forEach(b=>b.addEventListener('click',()=>{state.district=+b.dataset.district;document.querySelectorAll('[data-district]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));document.querySelector('#scene-caption').textContent=names[state.district].toUpperCase()+' / '+captions[state.district];render();tell('Jesteś tutaj: '+names[state.district]);document.querySelector('#miasto').scrollIntoView({behavior:reduced.matches?'instant':'smooth',block:'start'})}));
+const dialog=document.querySelector('#journal');document.querySelector('#journal-link').addEventListener('click',e=>{e.preventDefault();dialog.showModal()});dialog.querySelector('.close').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});
+// A small original synthesizer: warm seventh chords, soft bass and a plucked melody.
+let audio,master,audioTimer,playing=false,beat=0,next=0;const play=document.querySelector('#play'),vol=document.querySelector('#volume');
+function note(hz,at,duration,gain,type='sine'){const osc=audio.createOscillator(),amp=audio.createGain();osc.type=type;osc.frequency.value=hz;amp.gain.setValueAtTime(0,at);amp.gain.linearRampToValueAtTime(gain,at+.025);amp.gain.exponentialRampToValueAtTime(.0001,at+duration);osc.connect(amp);amp.connect(master);osc.start(at);osc.stop(at+duration+.05)}
+const chords=[[130.81,164.81,196,246.94],[110,130.81,164.81,196],[87.31,110,130.81,164.81],[98,123.47,146.83,174.61]];
+function schedule(){while(next<audio.currentTime+.25){const chord=chords[Math.floor(beat/16)%4];if(beat%16===0)chord.forEach(hz=>note(hz,next,3.5,.08,'triangle'));if(beat%4===0)note(chord[0]/2,next,.6,.18);if(beat%2===0)note(chord[(beat/2)%4]*4,next,.55,.035,'sine');if(beat%4===0){note(70,next,.12,.18);note(45,next+.03,.14,.13)}beat++;next+=.23}}
+async function stopAudio(){playing=false;clearInterval(audioTimer);play.textContent='▶';play.setAttribute('aria-pressed','false');play.setAttribute('aria-label','Włącz radio lo-fi');document.querySelector('#radio').classList.remove('playing');document.querySelector('#track').textContent='lo-fi / własna częstotliwość';if(audio)await audio.suspend()}
+play.addEventListener('click',async()=>{if(playing){await stopAudio();return}try{if(!audio){audio=new (window.AudioContext||window.webkitAudioContext)();master=audio.createGain();master.gain.value=+vol.value/100*.7;const filter=audio.createBiquadFilter();filter.type='lowpass';filter.frequency.value=1600;master.connect(filter);filter.connect(audio.destination)}await audio.resume();playing=true;next=audio.currentTime+.08;schedule();audioTimer=setInterval(schedule,100);play.textContent='Ⅱ';play.setAttribute('aria-pressed','true');play.setAttribute('aria-label','Zatrzymaj radio lo-fi');document.querySelector('#radio').classList.add('playing');document.querySelector('#track').textContent='teraz gra: Światła na piątym piętrze'}catch(e){tell('Radio jest niedostępne w tej przeglądarce.')}});
+vol.addEventListener('input',()=>{if(master)master.gain.setTargetAtTime(+vol.value/100*.7,audio.currentTime,.05)});
+document.addEventListener('visibilitychange',()=>{last=performance.now();if(document.hidden&&playing)stopAudio()});
+})();
+</script>
+</body>
+</html>
